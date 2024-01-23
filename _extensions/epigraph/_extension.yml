@@ -1,0 +1,8 @@
+title: Epigraph
+author: Brian Ballsun-Stanton
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  shortcodes:
+    - epigraph.lua
+

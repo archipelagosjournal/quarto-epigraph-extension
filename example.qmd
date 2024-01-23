@@ -1,0 +1,36 @@
+---
+title: "Epigraph Example"
+format: 
+  html: 
+    anchor-sections: true
+  pdf: 
+    pdf-engine: lualatex
+    keep_tex: true
+    documentclass: scrartcl
+
+---
+
+This is an extension to add epigraphs with right-aligned LaTeX and css classes for html.
+
+### Epigraph 1
+
+{{< epigraph text="text without citation" >}}
+
+### Epigraph 2
+
+{{< epigraph text="Memory ... dulls the lash/for the master, sharpens it for the slave."
+            citation='Natasha Tretheway, "Native Guard."'
+             >}}
+
+### Epigraph 3
+
+{{< epigraph text="This is the first line. \\ Multiline test. \\ Using LaTeX newlines."
+            citation='Brian'
+             >}}
+
+Some normal text.
+
+- Digital Humanities: digital humanities within academia
+- digital humanities: humanities work rendered digitally
+- Digital Media: content created online
+- digital practice: 💋💩😎🕷💦 
