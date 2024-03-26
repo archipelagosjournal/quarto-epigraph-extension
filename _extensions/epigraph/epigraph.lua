@@ -42,15 +42,15 @@ return {
     elseif quarto.doc.is_format("latex") then
 
       -- we need to replace ` \\ ` with `\n\n` in the text
-      text = string.gsub(text, " \\ ", "\n\n")
-
-
-      local latex = '\\begin{quote}' .. text .. "\n\n"
-      if citation ~= "" then
-        latex = latex .. '\\hfill -- ' .. citation .. '\n\n'
-      end
-      latex = latex .. '\\end{quote}'
-      return pandoc.RawInline('latex', latex)
+     local elements = {
+        pandoc.RawInline('latex', '\\quotation{'),
+        pandoc.Str(text),
+        pandoc.RawInline('latex', '}{'),
+        pandoc.Str((citation or '')),
+        pandoc.RawInline('latex', '}')
+      }
+      
+      return pandoc.Para(elements)
     else
       return pandoc.Str("[" .. text .. (citation ~= "" and " -- " .. citation or "") .. "]")
     end
