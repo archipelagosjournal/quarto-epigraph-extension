@@ -44,10 +44,19 @@ return {
       -- we need to replace ` \\ ` with `\n\n` in the text
      local elements = {
         pandoc.RawInline('latex', '\\quotation{'),
-        pandoc.Str(text),
-        pandoc.RawInline('latex', '}{'),
-        pandoc.Str((citation or '')),
-        pandoc.RawInline('latex', '}')
+     }
+      if string.find(text, " \\ ") then
+        local text_lines = {}      
+        for line in string.gmatch(text, "([^\\]+)") do
+          table.insert(elements, pandoc.Str(line))
+        end
+      else
+        table.insert(elements, pandoc.Str(text))
+      end
+      table.insert(elements, pandoc.RawInline('latex', '}{'))
+      table.insert(elements, pandoc.Str((citation or '')))
+      table.insert(elements, pandoc.RawInline('latex', '}'))  
+        
       }
       
       return pandoc.Para(elements)
