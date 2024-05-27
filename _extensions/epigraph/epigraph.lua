@@ -49,6 +49,7 @@ return {
         local text_lines = {}      
         for line in string.gmatch(text, "([^\\]+)") do
           table.insert(elements, pandoc.Str(line))
+          table.insert(elements, pandoc.RawInline('latex', '\\newline{}'))
         end
       else
         table.insert(elements, pandoc.Str(text))
@@ -57,7 +58,7 @@ return {
       table.insert(elements, pandoc.Str((citation or '')))
       table.insert(elements, pandoc.RawInline('latex', '}'))  
         
-      }
+      
       
       return pandoc.Para(elements)
     else
